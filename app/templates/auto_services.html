@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<body>
+    <div class="icon-container">
+        <h3>Click on the icons:</h3>
+        <a href="{% url 'facebook_login' %}">
+            <img src="{% static 'images/facebook icon.png' %}" alt="Facebook">
+        </a>
+        <a href="{% url 'youtube_automate_order' %}">
+            <img src="{% static 'images/youtube icon.png' %}" alt="YouTube">
+        </a>
+        <a href="{% url 'linkedin_post' %}">
+            <img src="{% static 'images/linkedin icon.png' %}" alt="LinkedIn">
+        </a>
+        <a href="{% url 'instagram_login' %}">
+            <img src="{% static 'images/instagram icon.png' %}" alt="LinkedIn">
+        </a>
+    </div>
+</body>
+{% endblock %}

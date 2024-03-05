@@ -1,0 +1,54 @@
+<!-- schedule_facebook_post.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <div class="card border-primary">
+            <div class="card-header bg-primary text-white">
+                <h2>Schedule Facebook Post</h2>
+            </div>
+            <div class="card-body">
+                <form class="row g-3" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="col-md-6">
+                        <label for="message" class="form-label">Post Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="attachment_url" class="form-label">Attachment URL</label>
+                        <input type="url" class="form-control" id="attachment_url" name="link" placeholder="Enter video URL">
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="image" class="form-label">Image File</label>
+                        <input type="file" class="form-control" id="image" name="image" accept="image/*,video/*">
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="publish_date" class="form-label">Schedule Date</label>
+                        <input type="date" class="form-control" id="publish_date" name="publish_date">
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="publish_time" class="form-label">Schedule Time</label>
+                        <input type="time" class="form-control" id="publish_time" name="publish_time">
+                    </div>
+                    
+                    <div class="col-12 mt-3">
+                        <button type="submit" class="btn btn-primary">Schedule Post</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

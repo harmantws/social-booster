@@ -1,0 +1,68 @@
+<!-- schedule_linkedin_post.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <div class="card border-success">
+            <div class="card-header bg-success text-white">
+                <h2>Schedule LinkedIn Post</h2>
+            </div>
+            <div class="card-body">
+                <form class="row g-3" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="col-md-6">
+                        <label for="content" class="form-label">Post Content</label>
+                        <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="title" class="form-label">Title Content</label>
+                        <input class="form-control" id="title" name="title" rows="3" required>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="attachment_url" class="form-label">Attachment URL</label>
+                        <input type="url" class="form-control" id="attachment_url" name="attachment_url" placeholder="Enter video URL" required>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="hashtags" class="form-label">Hashtags</label>
+                        <input type="text" class="form-control" id="hashtags" name="hashtags" placeholder="Enter multiple hashtags, separated by commas" required>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="visibility" class="form-label">Visibility</label>
+                        <select id="visibility" class="form-select" name="visibility" required>
+                            <option selected disabled>Choose...</option>
+                            <option value="connections">Connections</option>
+                            <option value="public">Public</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="publish_date" class="form-label">Schedule Date</label>
+                        <input type="date" class="form-control" id="publish_date" name="publish_date">
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="publish_time" class="form-label">Schedule Time</label>
+                        <input type="time" class="form-control" id="publish_time" name="publish_time">
+                    </div>
+                    
+                    <div class="col-12 mt-3">
+                        <button type="submit" class="btn btn-success">Schedule Post</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

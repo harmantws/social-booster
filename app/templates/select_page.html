@@ -1,0 +1,23 @@
+<!-- select_page.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2>Select a Facebook Page</h2>
+        <form method="POST" action="{% url 'facebook_pages' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="page-select">Select a Page:</label>
+                <select class="form-control" id="page-select" name="page_id">
+                    {% for page in pages %}
+                        <option value="{{ page.id }}">{{ page.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <input type="hidden" name="message" value="{{ message }}">
+            <input type="hidden" name="access_token" value="{{ access_token }}">
+            <button type="submit" class="btn btn-primary">Post on Selected Page</button>
+        </form>
+    </div>
+{% endblock %}

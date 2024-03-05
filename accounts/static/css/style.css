@@ -1,0 +1,26 @@
+/* static/css/style.css */
+
+body {
+    background-color: #000; /* Black */
+    color: #fff; /* White */
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.jumbotron {
+    background-color: #000; /* Black */
+    color: #fff; /* White */
+}
+
+.icon-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.icon-container a {
+    display: inline-block;
+    margin: 10px;
+}
+

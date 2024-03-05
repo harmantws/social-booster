@@ -1,0 +1,156 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+{% if messages %}
+<div class="container mt-4">
+    <div class="alert alert-success" role="alert">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+<div class="container mt-4">
+    <div class="card border-success">
+        <div class="card-header bg-success text-white">
+            <h2>Schedule YouTube Video</h2>
+        </div>
+        <div class="card-body">
+        <form class="row g-3" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col-md-6">
+                <label for="videoFile" class="form-label">Upload Video File</label>
+                <input type="file" class="form-control" id="videoFile" name="video_file" accept="video/*" required>
+            </div>
+            
+            <div class="col-md-6">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="col-12">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+            </div>
+            <div class="col-12">
+                <label for="tags" class="form-label">Tags</label>
+                <input type="text" class="form-control" id="tags" name="tags" placeholder="Enter multiple tags, separated by commas" required>
+            </div>
+            <div class="col-md-6">
+                <label for="privacyStatus" class="form-label">Privacy Status</label>
+                <select id="privacyStatus" class="form-select" name="privacy_status" required>
+                    <option selected disabled>Choose...</option>
+                    <option value="public">Public</option>
+                    <option value="private">Private</option>
+                    <option value="unlisted">Unlisted</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="publishDate" class="form-label">Publish Date</label>
+                <input type="date" class="form-control" id="publishDate" name="publish_date" required>
+            </div>
+            <div class="col-md-6">
+                <label for="publishTime" class="form-label">Publish Time</label>
+                <input type="time" class="form-control" id="publishTime" name="publish_time" required>
+            </div>
+            <div class="col-12 mt-3">
+                <button type="submit" class="btn btn-success">Schedule Video</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+
+
+
+
+{% comment %} {% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2>Schedule YouTube Videos</h2>
+        <form class="row g-3" method="POST" enctype="multipart/form-data" id="videos-form">
+            {% csrf_token %}
+            <div id="forms-container">
+                <div class="video-form">
+                    <!-- Your existing form fields go here -->
+                    <div class="col-md-6">
+                        <label for="videoFile" class="form-label">Upload Video File</label>
+                        <input type="file" class="form-control" name="video_file" accept="video/*" required>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" name="title" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" name="description" rows="3" required></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label for="tags" class="form-label">Tags</label>
+                        <input type="text" class="form-control" name="tags" placeholder="Enter multiple tags, separated by commas" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="privacyStatus" class="form-label">Privacy Status</label>
+                        <select class="form-select" name="privacy_status" required>
+                            <option selected disabled>Choose...</option>
+                            <option value="public">Public</option>
+                            <option value="private">Private</option>
+                            <option value="unlisted">Unlisted</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="publishDate" class="form-label">Publish Date</label>
+                        <input type="date" class="form-control" name="publish_date" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="publishTime" class="form-label">Publish Time</label>
+                        <input type="time" class="form-control" name="publish_time" required>
+                    </div>
+                    
+                    <!-- Remove button is not included for the first form -->
+                </div>
+                <hr>
+            </div>
+            <button type="button" class="btn btn-success" id="add-form">Add More Videos to Schedule</button>
+            <button type="submit" class="btn btn-primary">Schedule Videos</button>
+        </form>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const formsContainer = document.getElementById('forms-container');
+                const addFormButton = document.getElementById('add-form');
+
+                addFormButton.addEventListener('click', function () {
+                    const newForm = formsContainer.children[0].cloneNode(true);
+                    newForm.querySelectorAll('input, select').forEach(input => {
+                        input.value = '';
+                    });
+
+                    // Add the remove button to the new form
+                    const removeButton = document.createElement('button');
+                    removeButton.type = 'button';
+                    removeButton.className = 'btn btn-danger remove-form';
+                    removeButton.textContent = 'Remove';
+                    newForm.appendChild(removeButton);
+
+                    formsContainer.appendChild(newForm);
+                });
+
+                formsContainer.addEventListener('click', function (event) {
+                    if (event.target.classList.contains('remove-form')) {
+                        event.target.parentElement.remove();
+                    }
+                });
+            });
+        </script>
+    </div>
+{% endblock %} {% endcomment %}
+
+
+
+
+
